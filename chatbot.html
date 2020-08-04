@@ -1,0 +1,48 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+
+  <title>ChatBot</title>
+  <meta name="description" content="ChatBot">
+  <meta name="author" content="SitePoint">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="chatbot.css" />
+    <script src="chatBot.js"></script>
+    <script>
+      var webSocket = new WebSocket("ws://localhost:3000")
+          $(document).ready(function () {
+        $("#connectBtn").click(function() {
+            console.log("connecting....")
+          webSocket.OPEN
+            console.log(webSocket)
+        },
+            function () {
+              console.log("not connecting...")    
+            })
+    })
+    </script>
+</head>
+
+// First make chat box 
+<body>
+<div id="outerdiv">
+    <div id="innerdiv">
+        <div>
+            <textarea id="chatwindow"></textarea>
+        </div>
+<div>
+    <input type="text" id="message">
+        <div>
+            <button onclick="websocketopen" id="connectBtn" >Connect</button>
+                <button id="disconnectBtn">Disconnect</button>
+                    <button id="sendBtn">Send</button>
+                </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
