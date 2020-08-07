@@ -3,46 +3,97 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
+    <meta charset="utf-8">
 
-  <title>ChatBot</title>
-  <meta name="description" content="ChatBot">
-  <meta name="author" content="SitePoint">
+    <title>ChatBot</title>
+    <meta name="description" content="ChatBot">
+    <meta name="author" content="SitePoint">
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="chatbot.css" />
-    <script src="chatBot.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="chatbot.css" />
     <script>
-      var webSocket = new WebSocket("ws://localhost:3000")
-          $(document).ready(function () {
-        $("#connectBtn").click(function() {
-            console.log("connecting....")
-          webSocket.OPEN
-            console.log(webSocket)
-        },
-            function () {
-              console.log("not connecting...")    
+        window.onload = function () {
+            var webSocky = new WebSocket("ws://echo.websocket.org")
+            // As soon as you create a websocket, it opens and its ready state is at 1. 
+            //echo.websocket is a echo server usually used for testing
+            var connectbtn = document.getElementById("connectbtn")
+            var sendbtn = document.getElementById("sendbtn")
+            var disconnectbtn = document.getElementById("disconnectbtn")
+            var newMessage = document.getElementById("message")
+            var chatwindow = document.getElementById("chatwindow")
+
+            //websocket open event listener
+            webSocky.onopen = function (event) {
+                //alerts web browser that web browser is open
+                alert("This websocket is now open")
+            }
+            //added click event listener to disconnect button, 
+            disconnectbtn.addEventListener('click', function (event) {
+                //when clicked, set event listener websocket onclose so browser is alerted a message
+                webSocky.onclose = function (event) {
+                    alert("This websocket has now closed")
+                    //create a paragraph element, state "closed connection" and attach to chatwindow
+                    var closealert = document.createElement("p")
+                    chatwindow.append(closealert.innerHTML = "CLOSED CONNECTION")
+
+                }
+                //afterwards websocket is closed using .close() method
+                webSocky.close()
             })
-    })
+
+            sendbtn.addEventListener('click', function (event) {
+                event.preventDefault();
+                var message = newMessage.value;
+
+                // Send the message through the WebSocket.
+                webSocky.send(message);
+
+
+                // Add the message to the messages list.
+
+                // create a new paragraph element.
+                var mymessage = document.createElement("p")
+
+                //set innerhtml of mymessage to the message 
+                chatwindow.append(mymessage.innerHTML = "You:" + message)
+
+                // Clear out the message field.
+                newMessage.value = '';
+
+                return false;
+            })
+
+            //onmessage is an event listener when message is recieved from the server (the other user)
+            webSocky.onmessage = function (event) {
+                //set message variable to the event's data. 
+                var message = event.data;
+                //create a new paragraph element and append message to chatwindow.
+                var theirmessage = document.createElement("p")
+                chatwindow.append(theirmessage.innerHTML = "Them:" + message)
+            };
+        }
+
     </script>
 </head>
 
-// First make chat box 
+// First make chat box
+
 <body>
-<div id="outerdiv">
-    <div id="innerdiv">
-        <div>
-            <textarea id="chatwindow"></textarea>
-        </div>
-<div>
-    <input type="text" id="message">
-        <div>
-            <button onclick="websocketopen" id="connectBtn" >Connect</button>
-                <button id="disconnectBtn">Disconnect</button>
-                    <button id="sendBtn">Send</button>
+    <div id="outerdiv">
+        <div id="innerdiv">
+            <div>
+                <textarea id="chatwindow"></textarea>
+            </div>
+            <div>
+                <input type="text" id="message">
+                <div>
+                    <button id="connectbtn">Connect</button>
+                    <button id="disconnectbtn">Disconnect</button>
+                    <button id="sendbtn">Send</button>
                 </div>
+            </div>
         </div>
     </div>
-</div>
 </body>
+
 </html>

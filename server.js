@@ -3,9 +3,8 @@ const app = express()
 const port = 3000
 const path = require("path")
 const fs = require("fs")
-
-// app.set("view engine", "html")
-// app.use(express.static(path.join(__dirname, "build")))
+app.set("view engine", "html")
+app.use(express.static(path.join(__dirname, "build")))
 
 app.set('port', (process.env.PORT || 3000));
 
