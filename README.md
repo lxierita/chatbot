@@ -1,6 +1,6 @@
-#WebSockets
+WebSockets
 
-#Constants 
+Constants 
 
     Websockets have three constants that return back its value (ready state);
 
@@ -12,7 +12,7 @@
 You can check the current state of the websocket calling the property 
 obj.readystate which would return back one of these values
 
-#All websocket properties
+All websocket properties
 
     WebSocket.binaryType : The binary data type used by the connection.
 
@@ -43,7 +43,7 @@ obj.readystate which would return back one of these values
     WebSocket.url (Read only property)
     The absolute URL of the WebSocket.
 
-#All websocket methods
+All websocket methods
 
     WebSocket.close([code[, reason]])
     Closes the connection.
