@@ -1,66 +1,12 @@
-WebSockets
+### A strange chatbot
 
-Constants 
+This is a chatbot that responds to any questions with the solutions of the formula a^3 + b^3 = c^3 + d^3
 
-    Websockets have three constants that return back its value (ready state);
+## The idea
 
-    WebSocket.CONNECTING	 0
-    WebSocket.OPEN	         1
-    WebSocket.CLOSING	     2
-    WebSocket.CLOSED         3
+**original:** My colleague created this in order to practice WebSocket. [https://github.com/peach-bit/chatbot](https://github.com/peach-bit/chatbot)
 
-You can check the current state of the websocket calling the property 
-obj.readystate which would return back one of these values
+**purpose:** To finish the unfinished tasks that I accumulated through the week. This is one of my first attempt to manage self-learning through [task reshuffling](https://github.com/lxierita/placement-retro/blob/4c6fe6fdeec4025e6a13e680a369996a966b241d/html/week15.html#L56-L64). 
 
-All websocket properties
-
-    WebSocket.binaryType : The binary data type used by the connection.
-
-    WebSocket.bufferedAmount (Read only property) 
-    The number of bytes of queued data.
-
-    WebSocket.extensions (Read only property)
-    The extensions selected by the server.
-
-    WebSocket.onclose
-    An event listener to be called when the connection is closed.
-
-    WebSocket.onerror
-    An event listener to be called when an error occurs.
-
-    WebSocket.onmessage
-    An event listener to be called when a message is received from the server.
-
-    WebSocket.onopen
-    An event listener to be called when the connection is opened.
-
-    WebSocket.protocol (Read only property)
-    The sub-protocol selected by the server.
-
-    WebSocket.readyState (Read only property)
-    The current state of the connection.
-
-    WebSocket.url (Read only property)
-    The absolute URL of the WebSocket.
-
-All websocket methods
-
-    WebSocket.close([code[, reason]])
-    Closes the connection.
-
-    WebSocket.send(data)
-    Enqueues data to be transmitted.
-
-All websocket event listeners + events; 
-
-    WebSocket.onclose
-    An event listener to be called when the connection is closed.
-
-    WebSocket.onerror
-    An event listener to be called when an error occurs.
-
-    WebSocket.onmessage
-    An event listener to be called when a message is received from the server.
-
-    WebSocket.onopen
-    An event listener to be called when the connection is opened.
+# The planning behind
+![excalidraw plan](./assets/images/plan.png)
